@@ -69,7 +69,7 @@ class CarPanel extends JPanel implements Runnable {
     public void run() {
         while (true) {
             carX += 2; // Geser mobil ke kanan/kiri(-/+)
-            keKanan = false; //Ubah Ke True jika ingin ke kanan
+            keKanan = True; //Ubah Ke False jika ingin ke kiri Tanda Lampu Depan
 
             if (carX > getWidth()) { 
                 carX = -60; // Reset posisi ke awal jika keluar dari layar 
