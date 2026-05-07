@@ -38,28 +38,41 @@ class CarPanel extends JPanel implements Runnable {
         drawCar(g, carX, 100); // Gambar mobil di posisi saat ini
     }
 
+    private boolean keKanan = false;
     private void drawCar(Graphics g, int x, int y) {
-        // Gambar badan mobil
-        g.setColor(Color.MAGENTA);
-        g.fillRect(x, y, 60, 30);
+          // Badan mobil
+    g.setColor(Color.MAGENTA);
+    g.fillRect(x, y, 60, 30);
 
-        // Gambar atap mobil
-        g.setColor(Color.PINK);
-        g.fillRect(x + 10, y - 15, 40, 15);
+    // Atap mobil
+    g.setColor(Color.PINK);
+    g.fillRect(x + 10, y - 15, 40, 15);
 
-        // Gambar roda
-        g.setColor(Color.BLACK);
-        g.fillOval(x + 5, y + 25, 15, 15);
-        g.fillOval(x + 40, y + 25, 15, 15);
+    // Lampu depan sesuai arah
+    g.setColor(Color.YELLOW);
+
+    if (keKanan) {
+        // Lampu depan kanan
+        g.fillOval(x + 58, y + 8, 8, 8);
+    } else {
+        // Lampu depan kiri
+        g.fillOval(x - 5, y + 8, 8, 8);
+    }
+
+    // Roda
+    g.setColor(Color.BLACK);
+    g.fillOval(x + 5, y + 25, 15, 15);
+    g.fillOval(x + 40, y + 25, 15, 15);
     }
 
     @Override
     public void run() {
         while (true) {
-            carX += 2; // Geser mobil ke kanan
+            carX += 2; // Geser mobil ke kanan/kiri(-/+)
+            keKanan = false; //Ubah Ke True jika ingin ke kanan
 
-            if (carX > getWidth()) {
-                carX = -60; // Reset posisi ke awal jika keluar dari layar
+            if (carX > getWidth()) { 
+                carX = -60; // Reset posisi ke awal jika keluar dari layar 
             }
 
             repaint(); // Gambar ulang panel
