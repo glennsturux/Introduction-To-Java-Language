@@ -1,0 +1,16 @@
+Pertama isi URL Dengan
+
+https://jsonplaceholder.typicode.com/posts
+
+setelah isi GET, 
+
+
+Lalu isi Data 
+
+{
+"nama":"Mourass",
+"npm":"12112",
+"kelas":"4kas",
+}
+
+POST
