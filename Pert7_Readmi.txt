@@ -14,3 +14,32 @@ Lalu isi Data
 }
 
 POST
+
+
+*Bagian Import*
+
+import javax.swing.JOptionPane;
+import java.io.*;
+import java.net.*;
+
+*Button Post*
+
+            con.setUseCaches(false);
+            con.setDoInput(true);
+            con.setDoOutput(true);
+
+            OutputStreamWriter out = new OutputStreamWriter(con.getOutputStream());
+            out.write(data);
+            out.flush();
+            out.close();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null)
+            txt_response.append(line+"\n");
+            in.close();
+            out.close();
+            con.disconnect();
+
+*Di Bawah Catch EXCEPTON*
+txt_response.setText("Error : " + e.getMessage());
