@@ -1,0 +1,59 @@
+sisiServer.java
+
+package act8baru;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import javax.swing.JOptionPane;
+
+public class sisiServer extends javax.swing.JFrame {
+    
+    static ServerSocket ss;
+    static Socket s;
+    static DataInputStream din;
+    static DataOutputStream dout;
+    static String namaClient;
+//Line 140
+  try {
+            ss = new ServerSocket(2424); // Ubah sesuai 4 npm belakang
+            s = ss.accept();
+
+            din = new DataInputStream(s.getInputStream());
+            dout = new DataOutputStream(s.getOutputStream());
+
+
+Ubah Port di Sisi Server
+
+sisiClient.java
+
+package act8baru;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
+import javax.swing.JOptionPane;
+
+public class sisiClient extends javax.swing.JFrame {
+    
+    static Socket s;
+    static DataInputStream din;
+    static DataOutputStream dout;
+
+     try {
+            // Minta input dari user
+            
+            String ip = JOptionPane.showInputDialog("Masukkan IP Server:", ""); // Ip bisa menggunakan 127.0.0.1 atau 0.0.0.0
+            String portStr = JOptionPane.showInputDialog("Masukkan Port Server:", ""); // Nanti masukkan sesuai port di sisiServer atau npm
+            String nama = JOptionPane.showInputDialog("Masukkan Nama Anda:");
+            if (nama == null || nama.trim().isEmpty()) {
+                nama = "User";  // Default nama
+            }
+            int port = Integer.parseInt(portStr);
+//Line 172
+            // Koneksi ke server
+            s = new Socket(ip, port);
+            din = new DataInputStream(s.getInputStream());
+            dout = new DataOutputStream(s.getOutputStream());
+            
+Pertama Jalankan Sisi Server Terlebih Dahulu
